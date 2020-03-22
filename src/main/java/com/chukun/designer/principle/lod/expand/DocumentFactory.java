@@ -10,14 +10,6 @@ import java.util.Map;
  */
 public class DocumentFactory {
 
-    private static final Map<String,Downloader> downloaderFactoryMap = new HashMap<>();
-    private static final Map<String,Parse> parseFactoryMap = new HashMap<>();
-
-    static {
-        downloaderFactoryMap.put("htmlDownloader",new HtmlDownLoader());
-        parseFactoryMap.put("htmlParse",new HtmlParse());
-    }
-
     private DocumentFactory(){
         throw new RuntimeException("singleton is not initialized....");
     }
@@ -30,12 +22,17 @@ public class DocumentFactory {
         return DocumentFactoryHolder.documentFactory;
     }
 
-    public  Downloader createDownloader (String key) {
-        return downloaderFactoryMap.getOrDefault(key,new HtmlDownLoader());
-    }
-
-    public  Parse createParse (String key) {
-        return parseFactoryMap.getOrDefault(key,new HtmlParse());
+    /**
+     * 创建文档
+     * @param key
+     * @param url
+     * @return
+     */
+    public  DocumentV2 createDownloader (String key,String url) {
+        Downloader downloader = DownloaderFactory.getInstance().createDownloader(key);
+        Parse parse = ParseFactory.getInstance().createParse(key);
+        String content = parse.parse(downloader.download(url));
+        return new DocumentV2(url,content);
     }
 
 }
