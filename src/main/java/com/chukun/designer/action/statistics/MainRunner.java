@@ -1,4 +1,4 @@
-package com.chukun.designer.action;
+package com.chukun.designer.action.statistics;
 
 /**
  * 运行示例

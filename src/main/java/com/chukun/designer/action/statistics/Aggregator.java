@@ -1,4 +1,4 @@
-package com.chukun.designer.action;
+package com.chukun.designer.action.statistics;
 
 import java.util.Collections;
 import java.util.List;
