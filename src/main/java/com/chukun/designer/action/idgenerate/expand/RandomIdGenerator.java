@@ -8,6 +8,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Random;
 
+/**
+ * @author chukun
+ *   随机id生成器
+ */
 public class RandomIdGenerator implements IdExpandGenerator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RandomIdGenerator.class);
@@ -18,7 +22,13 @@ public class RandomIdGenerator implements IdExpandGenerator {
      */
     @Override
     public String generate() {
-        String lastHostnameField = getLastFieldOfHostName();
+        String lastHostnameField = null;
+        try {
+            lastHostnameField = getLastFieldOfHostName();
+        }catch (UnknownHostException e) {
+            LOGGER.error("random id generate failed,cause : {}",e.getMessage());
+            throw  new  RandomIdGenerateException("random id generate failed....");
+        }
         long currentTimeMillis = System.currentTimeMillis();
         String randomAlphameric = generateRandomAlphameric(8);
         String currentId = String.format("%s-%d-%s",lastHostnameField,currentTimeMillis,randomAlphameric);
@@ -30,15 +40,9 @@ public class RandomIdGenerator implements IdExpandGenerator {
      * @return
      */
     @VisibleForTesting
-    private String getLastFieldOfHostName() {
-        String subStrHostname = null;
-        try {
-            String hostName = InetAddress.getLocalHost().getHostName();
-            subStrHostname = getLastSubstrSplittedByDot(hostName);
-        }catch (UnknownHostException e) {
-            LOGGER.warn("Failed to get the host name.", e);
-            subStrHostname = "dev0000001";
-        }
+    private String getLastFieldOfHostName() throws UnknownHostException {
+        String hostName = InetAddress.getLocalHost().getHostName();
+        String subStrHostname = getLastSubstrSplittedByDot(hostName);
         return subStrHostname;
     }
 
@@ -49,6 +53,9 @@ public class RandomIdGenerator implements IdExpandGenerator {
      */
     @VisibleForTesting
     protected String getLastSubstrSplittedByDot(String hostname) {
+        if (hostname == null || "".equals(hostname)) {
+            throw new IllegalArgumentException("hostname must be not empty");
+        }
         String[] token = hostname.split("\\.");
         String tokenLastField = token[token.length -1];
         return tokenLastField;
