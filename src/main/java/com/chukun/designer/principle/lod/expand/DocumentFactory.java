@@ -1,17 +1,13 @@
 package com.chukun.designer.principle.lod.expand;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author chukun
  *  工厂方法实现
  */
 public class DocumentFactory {
 
+
     private DocumentFactory(){
-        throw new RuntimeException("singleton is not initialized....");
     }
 
     private static class DocumentFactoryHolder {
