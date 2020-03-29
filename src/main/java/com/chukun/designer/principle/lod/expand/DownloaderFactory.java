@@ -17,6 +17,9 @@ public class DownloaderFactory {
     }
 
     private DownloaderFactory(){
+        if (DownloaderFactoryHolder.downloaderFactory!=null) {
+            throw  new RuntimeException("singleton is not initialized.....");
+        }
     }
 
     private static class DownloaderFactoryHolder {

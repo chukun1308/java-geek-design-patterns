@@ -8,8 +8,12 @@ public class DocumentFactory {
 
 
     private DocumentFactory(){
+        if (DocumentFactoryHolder.documentFactory!=null) {
+            throw  new RuntimeException("singleton is not initialized.....");
+        }
     }
 
+    // 防止反射调用，生成对象
     private static class DocumentFactoryHolder {
         final  static DocumentFactory documentFactory = new DocumentFactory();
     }

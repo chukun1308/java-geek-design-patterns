@@ -17,6 +17,9 @@ public class ParseFactory {
     }
 
     private ParseFactory(){
+        if (ParseFactoryHolder.parseFactory!=null) {
+            throw  new RuntimeException("singleton is not initialized.....");
+        }
     }
 
     private static class ParseFactoryHolder {
