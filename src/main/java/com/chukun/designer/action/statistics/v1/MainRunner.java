@@ -1,4 +1,4 @@
-package com.chukun.designer.action.statistics;
+package com.chukun.designer.action.statistics.v1;
 
 /**
  * 运行示例
@@ -9,7 +9,7 @@ public class MainRunner {
         ConsoleReporter consoleReporter = new ConsoleReporter(storage);
         consoleReporter.startRepeatedReport(60, 60);
         EmailReporter emailReporter = new EmailReporter(storage);
-        emailReporter.addToAddress("wangzheng@xzg.com");
+        emailReporter.addToAddress("chukun@qq.com");
         emailReporter.startDailyReport();
         MetricsCollector collector = new MetricsCollector(storage);
         collector.recordRequest(new RequestInfo("register", 123, 10234));

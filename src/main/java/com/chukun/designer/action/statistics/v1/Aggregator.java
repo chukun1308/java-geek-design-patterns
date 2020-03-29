@@ -1,4 +1,4 @@
-package com.chukun.designer.action.statistics;
+package com.chukun.designer.action.statistics.v1;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +9,15 @@ import java.util.List;
  */
 public class Aggregator {
 
+    /**
+     * Aggregator 类里面只有一个静态函数，
+     * 有 50 行左右的代码量，负责各种统计数据的计算。
+     * 当要添加新的统计功能的时候，我们需要修改 aggregate() 函数代码。
+     * 一旦越来越多的统计功能添加进来之后，这个函数的代码量会持续增加，可读性、可维护性就变差了
+     * @param list
+     * @param durationInMillis
+     * @return
+     */
     public static RequestStat aggregate(List<RequestInfo> list, long durationInMillis) {
         double maxRespTime = Double.MIN_VALUE;
         double minRespTime = Double.MAX_VALUE;
@@ -45,7 +54,7 @@ public class Aggregator {
         int idx999 = (int) (count * 0.999);
         int idx99 = (int) (count * 0.99);
         if (count != 0) {
-            p999RespTime = list.get(idx99).getResponseTime();
+            p999RespTime = list.get(idx999).getResponseTime();
             p99RespTime = list.get(idx99).getResponseTime();
         }
         RequestStat requestStat = new RequestStat();

@@ -1,4 +1,4 @@
-package com.chukun.designer.action.statistics;
+package com.chukun.designer.action.statistics.v1;
 
 import com.google.gson.Gson;
 
