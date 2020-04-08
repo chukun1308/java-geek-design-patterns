@@ -1,4 +1,6 @@
-package com.chukun.designer.pattern.prototype;
+package com.chukun.designer.pattern.prototype.v3;
+
+import com.chukun.designer.pattern.prototype.SearchWord;
 
 import java.util.ArrayList;
 import java.util.HashMap;

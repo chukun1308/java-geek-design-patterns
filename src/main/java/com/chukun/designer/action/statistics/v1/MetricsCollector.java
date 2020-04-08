@@ -4,6 +4,10 @@ package com.chukun.designer.action.statistics.v1;
 public class MetricsCollector {
     private MetricsStorage metricsStorage;//基于接口而非实现编程
 
+    public MetricsCollector() {
+        this.metricsStorage = new RedisMetricsStorage();
+    }
+
     // 依赖注入
     public MetricsCollector(MetricsStorage metricsStorage) {
         this.metricsStorage = metricsStorage;

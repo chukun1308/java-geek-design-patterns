@@ -1,4 +1,6 @@
-package com.chukun.designer.pattern.prototype;
+package com.chukun.designer.pattern.prototype.v2;
+
+import com.chukun.designer.pattern.prototype.SearchWord;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class PrototypeDemo02 {
 
-    private Map<String,SearchWord> currentKeyWords = new HashMap<>();
+    private Map<String, SearchWord> currentKeyWords = new HashMap<>();
     private int  version = -1;
 
     public void refresh() {
