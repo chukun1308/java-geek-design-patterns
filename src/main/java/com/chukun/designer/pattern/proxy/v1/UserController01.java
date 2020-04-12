@@ -4,6 +4,8 @@ import com.chukun.designer.action.statistics.v1.MetricsCollector;
 import com.chukun.designer.action.statistics.v1.RequestInfo;
 import com.chukun.designer.mvcddd.mvc.UserVo;
 
+import java.io.InputStream;
+
 /**
  * @author
  *   第一，性能计数器框架代码侵入到业务代码中，跟业务代码高度耦合。如果未来需要替换这个框架，那替换的成本会比较大。
