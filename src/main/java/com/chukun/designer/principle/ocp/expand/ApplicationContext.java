@@ -3,6 +3,8 @@ package com.chukun.designer.principle.ocp.expand;
 import com.chukun.designer.principle.ocp.simple.AlertRule;
 import com.chukun.designer.principle.ocp.simple.Notification;
 
+import java.util.ArrayList;
+
 /**
  * @author chukun
  */
@@ -14,7 +16,11 @@ public class ApplicationContext {
 
     public void initializeBeans() {
         alertRule = new AlertRule();
-        notification = new Notification();
+        notification = new Notification.NotificationBuilder()
+                .setWechatIds(new ArrayList<>())
+                .setTelephones(new ArrayList<>())
+        .setEmailAddresses(new ArrayList<>())
+        .builder();
         alert02 = new Alert02();
         alert02.addAlertHandler(new TpsAlertHandler(alertRule,notification));
         alert02.addAlertHandler(new TpsAlertHandler(alertRule,notification));

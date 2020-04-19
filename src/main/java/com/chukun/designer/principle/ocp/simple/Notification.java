@@ -44,7 +44,7 @@ public class Notification {
     /**
      * 使用builder模式，解决 局部变量被篡改的情况
      */
-    private static class NotificationBuilder {
+    public static class NotificationBuilder {
         private List<String> emailAddresses;
         private List<String> telephones;
         private List<String> wechatIds;
